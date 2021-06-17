@@ -1,0 +1,67 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<div class="text-center">
+    <!--Heading-->
+    <h1 class="display-4">COVID-19 Vaccine Distribution Logistics System</h1>
+    <p><img src='@Url.Content("~/content/vaccine.jpg")' alt="Image of Vaccine" width="420" height="240" /></p>
+    <p><img src='@Url.Content("~/content/spacer.png")' alt="Spacer" width="100" height="25" /></p>
+
+    <!--User-Specific Options-->
+    @if (SignInManager.IsSignedIn(User))
+    {
+        if (User.Identity.Name.Contains("driver"))
+        {
+            <!--Provide driver links-->
+            <div class="text-center">
+                <p>
+                    <a href="/../Stock"><img src='@Url.Content("~/content/boxLow.png")' alt="Stock Icon" width="100" height="100" /></a>
+                    <img src='@Url.Content("~/content/spacer.png")' alt="Spacer" width="100" height="100" />
+                    <a href="/../Location"><img src='@Url.Content("~/content/pinLow.png")' alt="Location Icon" width="100" height="100" /></a>
+                </p>
+                <p>
+                    <a href="/../Stock">View Stock</a>
+                    <img src='@Url.Content("~/content/spacer.png")' alt="Spacer" width="100" height="10" />
+                    <a href="/../Location">View Location</a>
+                </p>
+            </div>
+        }
+        else if (User.Identity.Name.Contains("manager"))
+        {
+            <!--Provide management links-->
+            <div class="text-center">
+                <p>
+                    <a href="/../Stock"><img src='@Url.Content("~/content/box.png")' alt="Stock Icon" width="100" height="100" /></a>
+                    <img src='@Url.Content("~/content/spacer.png")' alt="Spacer" width="100" height="100" />
+                    <a href="/../Location"><img src='@Url.Content("~/content/pin.png")' alt="Location Icon" width="100" height="100" /></a>
+                </p>
+                <p>
+                    <a href="/../Stock">Manage Stock</a>
+                    <img src='@Url.Content("~/content/spacer.png")' alt="Spacer" width="100" height="10" />
+                    <a href="/../Location">Manage Location</a>
+                </p>
+
+            </div>
+        }
+    }
+    else
+    {
+        <!--Provide links for unidentified users-->
+        <p>
+            Please <a href=Identity/Account/Login>log in</a> or <a href="Identity/Account/Register">register</a> to continue.
+        </p>
+    }
+    <!--Provide universal links-->
+    <div class="='Text-center">
+        <p>
+            Find more information about the pandemic <a href="/../Info">here</a>.
+        </p>
+    </div>
+</div>
