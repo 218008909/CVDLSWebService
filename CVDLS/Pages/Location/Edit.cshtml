@@ -1,0 +1,82 @@
+﻿@page
+@model CVDLS.Pages.Location.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    if (User.Identity.Name.Contains("manager"))
+    {
+        <h1>Edit</h1>
+
+        <h4>Location</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Location.LocationID" />
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Location.Stationary" /> @Html.DisplayNameFor(model => model.Location.Stationary)
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Location.Title" class="control-label"></label>
+                        <input asp-for="Location.Title" class="form-control" />
+                        <span asp-validation-for="Location.Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Location.Coordinates" class="control-label"></label>
+                        <input asp-for="Location.Coordinates" class="form-control" />
+                        <span asp-validation-for="Location.Coordinates" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Location.DateRecorded" class="control-label"></label>
+                        <input asp-for="Location.DateRecorded" class="form-control" />
+                        <span asp-validation-for="Location.DateRecorded" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Location.TagsInLocation" class="control-label"></label>
+                        <input asp-for="Location.TagsInLocation" class="form-control" />
+                        <span asp-validation-for="Location.TagsInLocation" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-page="./Index">Back to List</a>
+        </div>
+    }
+    else
+    {
+        <div>
+            <!--Notify user of denied permission-->
+            <p>
+                You do not have permission to access this page.
+            </p>
+        </div>
+    }
+}
+else
+{
+    <div>
+        <!--Provide links for unidentified users-->
+        <p>
+            Please <a href=Identity/Account/Login>log in</a> or <a href="Identity/Account/Register">register</a> to see if you have permission to take this action.
+        </p>
+    </div>
+}
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

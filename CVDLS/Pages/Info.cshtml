@@ -1,0 +1,18 @@
+﻿@page
+@model InfoModel
+@{
+    ViewData["Title"] = "Health Information";
+}
+
+<center>
+    <h1>@ViewData["Title"]</h1>
+    <p>The following information was provided by the World Health Organization at the start of the COVID-19 pandemic.</p>
+    <div>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/i0ZabxXmH4Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p><img src='@Url.Content("~/content/spacer.png")' alt="Spacer" width="100" height="15" /></p>
+        <p>The following tips were also provided to help maintain a sanitary environment.</p>
+        <p><img src='@Url.Content("~/content/spacer.png")' alt="Spacer" width="100" height="15" /></p>
+        <blockquote class="twitter-tweet" data-dnt="true" width="400"><p lang="en" dir="ltr">Lower your risk from <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> by combining these 5⃣ precautions:<br>1⃣ Wear a mask 😷<br>2⃣ Clean your hands👐<br>3⃣ Keep physical distance 📏<br>4⃣ Cough/sneeze away into your elbow 💪<br>5⃣ Open windows as much as possible 🪟 <br><br>We are <a href="https://twitter.com/hashtag/InThisTogether?src=hash&amp;ref_src=twsrc%5Etfw">#InThisTogether</a> to beat <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a><a href="https://t.co/eFRNDXc8Fc">pic.twitter.com/eFRNDXc8Fc</a></p>&mdash; World Health Organization (WHO) (WHO) <a href="https://twitter.com/WHO/status/1402206588123942915?ref_src=twsrc%5Etfw">June 8, 2021</a></blockquote>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+</center>
